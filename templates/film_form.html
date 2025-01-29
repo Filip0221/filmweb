@@ -1,0 +1,76 @@
+{% extends "glowny.html" %}
+{% load bootstrap %}
+{% block tytul %} filmy formularz{% endblock %}
+
+{% block strona %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                {% if nowy %}
+                    <h5 class="card-title">Nowy film</h5>
+                {% else %}
+                    <h5 class="card-title">Edytuj film: {{ form.instance.tytul }}</h5>
+                {% endif %}
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|bootstrap }}
+                    {{ form_dodatkowe|bootstrap }}
+                    <br>
+                    {% if nowy %}
+                        <button type="submit" class="btn btn-primary"> Nowy film </button>
+                    {% else %}
+                        <button type="submit" class="btn btn-primary"> Edytuj film </button>
+                    {% endif %}
+                </form>
+            <hr>
+            <a href="{% url 'wszystkie_filmy' %}" class="btn btn-secondary btn-sm">
+                <i class="fa-solid fa-arrow-left"></i> Cofnij
+            </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Oceń film</h5>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="gwiazdki">Podaj liczbę gwiazdek (1-10):</label>
+                        <input type="number" id="gwiazdki" name="gwiazdki" class="form-control" min="1" max="10" step="1" value="5" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="recenzja">Dodaj recenzję:</label>
+                        <textarea id="recenzja" name="recenzja" class="form-control" placeholder="Dodaj recenzję..." rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Oceń</button>
+                <hr>
+                    <h5 class="card-title">Oceny</h5>
+                {% for ocena in oceny %}
+                    <h6><strong>Użytkownik: {{ ocena.user }}</strong> Gwiazdki: {{ ocena.gwiazdki }}</h6>
+                    <p><strong>Recenzja:</strong> {{ ocena.recenzja }}</p>
+                {% empty %}
+                    <h6>Brak dodanych ocen użytkowników</h6>
+                {% endfor %}
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Aktorzy</h5>
+                {% for aktor in aktorzy %}
+                    <h6>Imię: {{ aktor.imie }} {{ aktor.nazwisko }}</h6>
+                {% empty %}
+                    <h6>Brak dodanych aktorów</h6>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

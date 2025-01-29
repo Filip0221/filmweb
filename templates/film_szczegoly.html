@@ -1,0 +1,71 @@
+{% extends "glowny.html" %}
+
+{% block tytul %} Szczegóły filmu - {{ film.tytul }} {% endblock %}
+
+{% block strona %}
+<div class="container mt-4">
+    <div class="card mb-4">
+        <img src="/media/{{ film.plakat }}" class="full-poster" alt="{{ film.tytul }}">
+        <div class="card-body">
+            <h3 class="card-title">{{ film.tytul }} ({{ film.rok }})</h3>
+            <p><strong>Opis:</strong> {{ film.opis }}</p>
+            <p><strong>Premiera:</strong> {{ film.premiera|date:"d-m-Y" }}</p>
+            <p><strong>IMDb Rating:</strong> {{ film.imdb_rating }}</p>
+            {% if film.dodatkowe %}
+            <p><strong>Gatunek:</strong> {{ film.dodatkowe.get_gatunek_display }}</p>
+            <p><strong>Czas trwania:</strong> {{ film.dodatkowe.czasTrwania }} minut</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title">Aktorzy</h4>
+            <ul>
+                {% for aktor in aktorzy %}
+                <li>{{ aktor.imie }} {{ aktor.nazwisko }}</li>
+                {% empty %}
+                <li>Brak aktorów</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title">Oceny użytkowników</h4>
+            <ul class="list-group">
+                {% for ocena in oceny %}
+                <li class="list-group-item">
+                    <strong>{{ ocena.user.username }}</strong>: {{ ocena.gwiazdki }} gwiazdek
+                    <p>{{ ocena.recenzja }}</p>
+                </li>
+                {% empty %}
+                <li class="list-group-item">Brak ocen użytkowników</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title">Dodaj swoją ocenę</h4>
+            <form method="post">
+                {% csrf_token %}
+                {{ form_ocena.as_p }}
+                <button type="submit" class="btn btn-primary">Oceń</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div class="card">
+        <div class="card-body">
+            <p>Aby dodać ocenę, <a href="{% url 'login' %}">zaloguj się</a>.</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <a href="{% url 'wszystkie_filmy' %}" class="btn btn-secondary mt-3">Powrót do listy filmów</a>
+</div>
+{% endblock %}
