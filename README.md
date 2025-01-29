@@ -2,9 +2,6 @@
 
 Filmweb Clone to aplikacja internetowa napisana w Django, która pozwala użytkownikom przeglądać bazę filmów, oceniać je i dodawać recenzje. Strona oferuje system logowania oraz personalizację profilu użytkownika.
 
-## Wygląd
-![strona glowna niezalogowany-1](https://github.com/user-attachments/assets/716eb838-0bc3-4535-8fc8-a865ca6b4d01)
-
 ## Funkcje
 
 - **Autoryzacja użytkowników** – rejestracja, logowanie, resetowanie hasła.
@@ -45,3 +42,15 @@ Filmweb Clone to aplikacja internetowa napisana w Django, która pozwala użytko
    ```bash
    python manage.py runserver
    ```
+
+   
+## Wygląd
+![strona glowna niezalogowany-1](https://github.com/user-attachments/assets/716eb838-0bc3-4535-8fc8-a865ca6b4d01)
+![strona głowa zalogowany-1](https://github.com/user-attachments/assets/30499806-e424-458b-93eb-5f08e74bf1de)
+![nowy film-1](https://github.com/user-attachments/assets/625a2b7a-d03d-4822-8cc7-0d91c75670e6)
+![edycja filmu-1](https://github.com/user-attachments/assets/23fc0e67-1cd1-418f-a080-8945c394809f)
+![Szczegóły filmu - Iron man-1](https://github.com/user-attachments/assets/22ee777b-0264-4efe-aa66-810810ec921f)
+![logowanie-1](https://github.com/user-attachments/assets/cde8b245-d7f9-47fb-9b3b-fb2f62f96fe5)
+![rejstracja-1](https://github.com/user-attachments/assets/dbbd9592-a42d-4913-9750-2be34380036b)
+![usuwanie filmu-1](https://github.com/user-attachments/assets/4ddd6dbd-ce3c-4885-93a4-c2d666eed513)
+
