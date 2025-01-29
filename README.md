@@ -2,6 +2,9 @@
 
 Filmweb Clone to aplikacja internetowa napisana w Django, która pozwala użytkownikom przeglądać bazę filmów, oceniać je i dodawać recenzje. Strona oferuje system logowania oraz personalizację profilu użytkownika.
 
+## Wygląd
+![strona glowna niezalogowany-1](https://github.com/user-attachments/assets/716eb838-0bc3-4535-8fc8-a865ca6b4d01)
+
 ## Funkcje
 
 - **Autoryzacja użytkowników** – rejestracja, logowanie, resetowanie hasła.
